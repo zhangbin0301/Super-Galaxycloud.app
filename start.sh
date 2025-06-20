@@ -10,17 +10,17 @@ export VLESS_WSPATH=${VLESS_WSPATH:-'startvl'}l
 export XHTTP_PATH=${XHTTP_PATH:-''}
 export V_PORT=${V_PORT:-'8080'}
 
-export SUB_URL=${SUB_URL:-'https://myjyup.shiguangda.nom.za/upload-a4aa34be-4373-4fdb-bff7-0a9c23405dac'}
-export SUB_NAME=${SUB_NAME:-'galaxy'}
+export SUB_URL=${SUB_URL:-'https://sub.smartdns.eu.org/upload-ea4909ef-7ca6-4b46-bf2e-6c07896ef338'}
+export SUB_NAME=${SUB_NAME:-'GalaxyCloud.app'}
 
-export UUID=${UUID:-'e495d908-28e4-4d77-9b22-7d977108d407'}
+export UUID=${UUID:-'ea4909ef-7ca6-4b46-bf2e-6c07896ef338'}
 export NEZHA_VERSION=${NEZHA_VERSION:-'V1'}
-export NEZHA_SERVER=${NEZHA_SERVER:-'nazha.tcguangda.eu.org'}
-export NEZHA_KEY=${NEZHA_KEY:-'ilovehesufeng520'}
+export NEZHA_SERVER=${NEZHA_SERVER:-'nazhav1.gamesover.eu.org'}
+export NEZHA_KEY=${NEZHA_KEY:-'qL7B61misbNGiLMBDxXJSBztCna5Vwsy'}
 export NEZHA_PORT=${NEZHA_PORT:-'443'}
 
-export ARGO_DOMAIN=${ARGO_DOMAIN:-'gy.tcgd001.cf'}
-export ARGO_AUTH=${ARGO_AUTH:-'eyJhIjoiNjFmNmJhODg2ODkxNmJmZmM1ZDljNzM2NzdiYmIwMDYiLCJ0IjoiNWU2MGY5NmItMmI2Yi00M2MxLWE5OTAtMDA4NTI0YTE0MTk5IiwicyI6IlltVXhZak15TmpZdFpEQmlZeTAwTWpReUxUbGlabVF0TmpnNVlqQTJOR00wWmprMyJ9'}
+export ARGO_DOMAIN=${ARGO_DOMAIN:-''}
+export ARGO_AUTH=${ARGO_AUTH:-''}
 
 hint() { echo -e "\033[33m\033[01m$*\033[0m"; }
 
