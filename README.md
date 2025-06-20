@@ -1,1 +1,1 @@
-# Super-Galaxycloud.app
+# galaxy_git
