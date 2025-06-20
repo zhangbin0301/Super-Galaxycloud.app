@@ -4,7 +4,7 @@ export CF_IP=${CF_IP:-'ip.sb'}
 export openserver=${openserver:-'1'}
 export openkeepalive=${openkeepalive:-'1'}
 
-export VLESS_WSPATH=${VLESS_WSPATH:-'startvl'}l
+export VLESS_WSPATH=${VLESS_WSPATH:-'startvl'}
 export XHTTP_PATH=${XHTTP_PATH:-''}
 export V_PORT=${V_PORT:-'8080'}
 
