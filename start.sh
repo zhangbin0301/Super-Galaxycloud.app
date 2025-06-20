@@ -13,7 +13,7 @@ export V_PORT=${V_PORT:-'8080'}
 export SUB_URL=${SUB_URL:-'https://sub.smartdns.eu.org/upload-ea4909ef-7ca6-4b46-bf2e-6c07896ef338'}
 export SUB_NAME=${SUB_NAME:-'GalaxyCloud.app'}
 
-export UUID=${UUID:-'ea4909ef-7ca6-4b46-bf2e-6c07896ef338'}
+export UUID=${UUID:-'ea4909ef-7ca6-4b46-bf2e-6c07896ef905'}
 export NEZHA_VERSION=${NEZHA_VERSION:-'V1'}
 export NEZHA_SERVER=${NEZHA_SERVER:-'nazhav1.gamesover.eu.org'}
 export NEZHA_KEY=${NEZHA_KEY:-'qL7B61misbNGiLMBDxXJSBztCna5Vwsy'}
