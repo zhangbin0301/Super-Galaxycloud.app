@@ -364,7 +364,8 @@ run_processes() {
     sleep 1
   fi
 
-  export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
+  #export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
+  export ISP=$(curl -s https://ipconfig.netlib.re) && sleep 1
   check_hostname_change && sleep 1
   build_urls && sleep 2
 
