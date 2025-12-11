@@ -365,7 +365,7 @@ run_processes() {
   fi
 
   #export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
-  export ISP=$(curl -s https://ipconfig.netlib.re) && sleep 1
+  export ISP=$(curl -s https://ipconfig.de5.net) && sleep 1
   check_hostname_change && sleep 1
   build_urls && sleep 2
 
@@ -384,7 +384,7 @@ run_processes() {
   fi
 }
 
-# general_upload_data
+# 上传到聚合中心
 general_upload_data() {
   if [ -n "${MY_DOMAIN}" ] && [ -z "${ARGO_DOMAIN}" ]; then
     export ARGO_DOMAIN="${MY_DOMAIN}"
