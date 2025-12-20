@@ -365,7 +365,16 @@ run_processes() {
   fi
 
   #export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
-  export ISP=$(curl -s https://ipconfig.de5.net) && sleep 1
+  # 尝试获取 ISP 信息，按优先级顺序排列
+  export ISP=$(curl -s --max-time 5 https://ipconfig.lgbts.hidns.vip || \
+      curl -s --max-time 5 https://ipconfig.ggff.net || \
+      echo "🇺🇳")
+
+# 等待一秒
+sleep 1
+
+# 打印结果（可选，用于验证）
+echo "当前接入点: $ISP"
   check_hostname_change && sleep 1
   build_urls && sleep 2
 
