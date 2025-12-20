@@ -366,9 +366,12 @@ run_processes() {
 
   #export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
   # 尝试获取 ISP 信息，按优先级顺序排列
-  export ISP=$(curl -s --max-time 5 https://ipconfig.lgbts.hidns.vip || \
-      curl -s --max-time 5 https://ipconfig.ggff.net || \
-      echo "🇺🇳 联合国")
+  export ISP=$(curl -sfL --max-time 5 https://ipconfig.de5.net || \
+             curl -sfL --max-time 5 https://ipconfig.lgbts.hidns.vip || \
+             curl -sfL --max-time 5 https://ipconfig.ggff.net || \
+             echo "🇺🇳 联合国")
+
+sleep 1
 
 # 等待一秒
 sleep 1
