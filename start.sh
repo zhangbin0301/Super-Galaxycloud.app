@@ -368,7 +368,7 @@ run_processes() {
   # 尝试获取 ISP 信息，按优先级顺序排列
   export ISP=$(curl -s --max-time 5 https://ipconfig.lgbts.hidns.vip || \
       curl -s --max-time 5 https://ipconfig.ggff.net || \
-      echo "🇺🇳")
+      echo "🇺🇳 联合国")
 
 # 等待一秒
 sleep 1
