@@ -364,14 +364,27 @@ run_processes() {
     sleep 1
   fi
 
-  #export ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g') && sleep 1
-  # 尝试获取 ISP 信息，按优先级顺序排列
-  export ISP=$(curl -sfL --max-time 5 https://ipconfig.de5.net || \
-             curl -sfL --max-time 5 https://ipconfig.lgbts.hidns.vip || \
-             curl -sfL --max-time 5 https://ipconfig.ggff.net || \
-             echo "🇺🇳 联合国")
+  
+# 1. 获取 meta_info (国家城市信息)
+meta_info=$(curl -sfL --max-time 5 https://ipconfig.de5.net || \
+            curl -sfL --max-time 5 https://ipconfig.lgbts.hidns.vip || \
+            curl -sfL --max-time 5 https://ipconfig.ggff.net || \
+            echo "🇺🇳 联合国")
 
-sleep 1
+# 2. 获取 localisp (运营商信息)
+# 尝试从两个 API 获取 JSON 并解析 isp 字段
+local_isp_raw=$(curl -sfL --max-time 5 https://api.ip.sb/geoip/ || \
+                curl -sfL --max-time 5 http://ip-api.com/json/ )
+
+# 使用 grep 和 sed 提取字段值，并将空格/点/逗号替换为下划线
+local_isp=$(echo "$local_isp_raw" | grep -o '"isp":"[^"]*' | cut -d'"' -f4 | sed -e 's/[ ,.]/_/g; s/__*/_/g; s/^_//; s/_$//')
+
+# 如果获取失败，给个默认值
+[ -z "$local_isp" ] && local_isp="Unknown"
+
+# 3. 最终拼接并导出 ISP 变量
+# 结果示例: 🇧🇷 巴西 圣保罗-Oracle_Corporation
+export ISP="${meta_info}-${local_isp}"
 
 # 等待一秒
 sleep 1
@@ -402,11 +415,11 @@ general_upload_data() {
     export ARGO_DOMAIN="${MY_DOMAIN}"
   fi
   if [ -n "${VLESS_WSPATH}" ] && [ -z "${XHTTP_PATH}" ]; then
-    export vless_url="vless://${UUID}@${CF_IP}:${CFPORT}?host=${ARGO_DOMAIN}&path=%2F${VLESS_WSPATH}%3Fed%3D2048&type=ws&encryption=none&security=tls&sni=${ARGO_DOMAIN}#${ISP}-${SUB_NAME}"
+    export vless_url="vless://${UUID}@${CF_IP}:${CFPORT}?host=${ARGO_DOMAIN}&path=%2F${VLESS_WSPATH}%3Fed%3D2048&type=ws&encryption=none&security=tls&sni=${ARGO_DOMAIN}#${ISP} | ${SUB_NAME}"
     UPLOAD_DATA="${vless_url}"
   fi
   if [ -n "${XHTTP_PATH}" ] && [ -z "${VLESS_WSPATH}" ]; then
-    export xhttp_url="vless://${UUID}@${CF_IP}:${CFPORT}?encryption=none&security=tls&sni=${ARGO_DOMAIN}&type=xhttp&host=${ARGO_DOMAIN}&path=%2F${XHTTP_PATH}%3Fed%3D2048&mode=packet-up#${ISP}-${SUB_NAME}-xhttp"
+    export xhttp_url="vless://${UUID}@${CF_IP}:${CFPORT}?encryption=none&security=tls&sni=${ARGO_DOMAIN}&type=xhttp&host=${ARGO_DOMAIN}&path=%2F${XHTTP_PATH}%3Fed%3D2048&mode=packet-up#${ISP} | ${SUB_NAME}-xhttp"
     UPLOAD_DATA="${xhttp_url}"
   fi
   export UPLOAD_DATA
